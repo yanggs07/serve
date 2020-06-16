@@ -6,7 +6,7 @@ use Imagick;
 
 class ImagickLoader implements Loader
 {
-    public function load(string $path, int $width, int $height)
+    public function load($path, $width, $height)
     {
         $image = new Imagick($path);
 
