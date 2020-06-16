@@ -143,7 +143,7 @@ class ImageHasher
         return $distance;
     }
 
-    private function createLoader(): Loader
+    private function createLoader()
     {
         if (extension_loaded('gd')) {
             return new GDLoader();
