@@ -27,8 +27,8 @@ $data = [
     'jAverage' => (new ImageHash(new AverageHash()))->hash($content)->toHex(),
     'jDifference' => (new ImageHash(new DifferenceHash()))->hash($content)->toHex(),
     'jPerceptual' => (new ImageHash(new PerceptualHash()))->hash($content)->toHex(),
-    'kPhash' => base_convert((new ImageHasher())->pHash('tmp/image'), 2, 16),
-    'kDhash' => base_convert((new ImageHasher())->dHash('tmp/image'), 2, 16),
+    'kPhash' => base_convert((new ImageHasher())->pHash(__DIR__.'/tmp/image'), 2, 16),
+    'kDhash' => base_convert((new ImageHasher())->dHash(__DIR__.'/tmp/image'), 2, 16),
 ];
 
 echo json_encode($data);
