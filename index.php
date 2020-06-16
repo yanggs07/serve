@@ -23,7 +23,7 @@ file_put_contents(__DIR__.'/tmp/image', $content);
 
 $data = [
     'url' => $url,
-    'md5' => md5($content),
+    'hash' => md5($content),
     'jAverage' => (new ImageHash(new AverageHash()))->hash($content)->toHex(),
     'jDifference' => (new ImageHash(new DifferenceHash()))->hash($content)->toHex(),
     'jPerceptual' => (new ImageHash(new PerceptualHash()))->hash($content)->toHex(),
