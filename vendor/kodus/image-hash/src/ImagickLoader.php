@@ -6,7 +6,7 @@ use Imagick;
 
 class ImagickLoader implements Loader
 {
-    public function load(string $path, int $width, int $height): array
+    public function load(string $path, int $width, int $height)
     {
         $image = new Imagick($path);
 
@@ -16,8 +16,8 @@ class ImagickLoader implements Loader
 
         $bitmap = [];
 
-        for ($y = 0; $y < $height; $y++) {
-            for ($x = 0; $x < $width; $x++) {
+        for ($y = 0; $y < $height; ++$y) {
+            for ($x = 0; $x < $width; ++$x) {
                 $color = $image->getImagePixelColor($x, $y)->getColor();
 
                 $bitmap[$y][$x] = intval($color['r'] * 0.299 + $color['g'] * 0.587 + $color['b'] * 0.114);
