@@ -1,0 +1,6 @@
+{
+    "require": {
+        "jenssegers/imagehash": "^0.6.0",
+        "kodus/image-hash": "^0.1.0"
+    }
+}
