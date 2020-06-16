@@ -19,7 +19,7 @@ if (!$url) {
     $url = 'test.jpg';
 }
 $content = file_get_contents($url);
-file_put_contents('tmp/image', $content);
+file_put_contents(__DIR__.'/tmp/image', $content);
 
 $data = [
     'url' => $url,
