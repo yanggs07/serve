@@ -148,9 +148,7 @@ class ImageHasher
         if (extension_loaded('gd')) {
             return new GDLoader();
         } else {
-            if (class_exists(Imagick::class)) {
-                return new ImagickLoader();
-            }
+            return new ImagickLoader();
         }
 
         throw new RuntimeException('neither GD or Imagick extension is available');
