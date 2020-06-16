@@ -37,8 +37,8 @@ class ImageHasher
         $gray_sum = 0;
         $grays = [];
 
-        for ($y = 0; $y < 8; $y++) {
-            for ($x = 0; $x < 8; $x++) {
+        for ($y = 0; $y < 8; ++$y) {
+            for ($x = 0; $x < 8; ++$x) {
                 $gray = $bitmap[$y][$x];
                 $grays[] = $gray;
                 $gray_sum += $gray;
@@ -67,13 +67,12 @@ class ImageHasher
         $dct_sum = 0;
         $bits = [];
 
-        for ($dctY = 0; $dctY < 8; $dctY++) {
-            for ($dctX = 0; $dctX < 8; $dctX++) {
-
+        for ($dctY = 0; $dctY < 8; ++$dctY) {
+            for ($dctX = 0; $dctX < 8; ++$dctX) {
                 $sum = 1;
 
-                for ($y = 0; $y < 32; $y++) {
-                    for ($x = 0; $x < 32; $x++) {
+                for ($y = 0; $y < 32; ++$y) {
+                    for ($x = 0; $x < 32; ++$x) {
                         $sum += $dctConst[$dctY][$y] * $dctConst[$dctX][$x] * $bitmap[$y][$x];
                     }
                 }
@@ -109,8 +108,8 @@ class ImageHasher
 
         $bits = [];
 
-        for ($y = 0; $y < 8; $y++) {
-            for ($x = 0; $x < 8; $x++) {
+        for ($y = 0; $y < 8; ++$y) {
+            for ($x = 0; $x < 8; ++$x) {
                 $bits[] = ($bitmap[$y][$x] < $bitmap[$y][$x + 1]) ? '1' : '0';
             }
         }
@@ -135,9 +134,9 @@ class ImageHasher
 
         $distance = 0;
 
-        for ($i = 0; $i < $aL; $i++) {
-            if ($hash_a{$i} !== $hash_b{$i}) {
-                $distance++;
+        for ($i = 0; $i < $aL; ++$i) {
+            if ($hash_a[$i] !== $hash_b[$i]) {
+                ++$distance;
             }
         }
 
@@ -146,7 +145,7 @@ class ImageHasher
 
     private function createLoader(): Loader
     {
-        if (extension_loaded("gd")) {
+        if (extension_loaded('gd')) {
             return new GDLoader();
         } else {
             if (class_exists(Imagick::class)) {
@@ -154,7 +153,7 @@ class ImageHasher
             }
         }
 
-        throw new RuntimeException("neither GD or Imagick extension is available");
+        throw new RuntimeException('neither GD or Imagick extension is available');
     }
 
     /**
@@ -164,11 +163,11 @@ class ImageHasher
     {
         static $table;
 
-        if (! $table) {
+        if (!$table) {
             $table = [];
 
-            for ($dct_p = 0; $dct_p < 8; $dct_p++) {
-                for ($p = 0; $p < 32; $p++) {
+            for ($dct_p = 0; $dct_p < 8; ++$dct_p) {
+                for ($p = 0; $p < 32; ++$p) {
                     $table[$dct_p][$p] = cos(((2 * $p + 1) / 64) * $dct_p * pi());
                 }
             }
