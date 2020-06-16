@@ -16,7 +16,7 @@ if (isset($_SERVER['REQUEST_URI'])) {
     }
 }
 if (!$url) {
-    $url = 'test.jpg';
+    $url = __DIR__.'/test.jpg';
 }
 $content = file_get_contents($url);
 file_put_contents(__DIR__.'/tmp/image', $content);
